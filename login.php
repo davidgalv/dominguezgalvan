@@ -10,7 +10,8 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <h2></h2>
+        <h2>Proyecto PHP</h2>
+        <form action="" method="post"></form>
         <?php
         // put your code here
         ?>
