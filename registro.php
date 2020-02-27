@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php session_start(); ?>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -11,7 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <h2>Registrar usuario</h2>
-        <form action="registrado.php" method="post">
+        <form action="registro.php" method="post">
             <label>Nickname:</label>
             <br>
             <input type="text" name="user">
@@ -35,6 +35,17 @@ and open the template in the editor.
         </form>
         <?php
         // put your code here
+        if ((isset($_POST['boton'])) && (isset($_POST['pass']))) {
+            $_SESSION['usuario']=$_POST['user'];
+            require_once './connection.php';
+            $connect = new connection();
+            $sql = "INSERT INTO usuarios (user,name,passwd,mail) VALUES ('".$_POST['user']."','".$_POST['name']."','".$_POST['pass']."','".$_POST['mail']."')";
+            $connect->execSQL($sql);
+            header('Location: http://localhost/dominguezgalvan/registrado.php');
+            
+            printf("pollas como ollas");
+            
+        }
         ?>
     </body>
 </html>
