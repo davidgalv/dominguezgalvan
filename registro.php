@@ -51,9 +51,7 @@
             $connect->execSQL($sql);
             header('Location: http://localhost/dominguezgalvan/registrado.php');
             
-            printf("pollas como ollas");
-        endif;
-            
+            printf("pollas como ollas");            
         }
         ?>
     </body>
