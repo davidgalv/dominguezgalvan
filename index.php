@@ -16,7 +16,13 @@
         <form action="registro.php" method="post">
             <input type="submit" name="boton" value="Registrar">
         </form>
-        
+
+        <?php
+            require_once './connection.php';
+            $connect = new connection();
+
+            
+        ?>
 
         <!-- Si la sesión está iniciada se muestra esto -->
         <?php
