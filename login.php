@@ -11,7 +11,16 @@ and open the template in the editor.
     </head>
     <body>
         <h2>Proyecto PHP</h2>
-        <form action="" method="post"></form>
+        <form action="" method="post">
+            <label>Nickname:</label>
+            <img src="">
+            <br>
+            <input type="text" name="user">
+            <br>
+            <input type="password" name="pass" placeholder="* Contraseña">
+            <br>
+            <input type="submit" name="boton" value="Continuar">
+        </form>
         <?php
         // put your code here
         ?>
