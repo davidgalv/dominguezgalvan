@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<?php 
-    session_start(); 
-?>
 <!-- Formulario para iniciar sesión -->
 <html lang="es">
     <head>
@@ -29,8 +26,5 @@
                 </tr>
             </table>
         </form>
-        <?php
-        // put your code here
-        ?>
     </body>
 </html>

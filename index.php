@@ -15,11 +15,27 @@
         </form>
         
 
-        <!-- Si la sesión está iniciada con un usuario diferente a administrador se muestra esto -->
+        <!-- Si la sesión está iniciada se muestra esto -->
+        <?php
+            session_start();
+            if (isset($_SESSION['user']))
+            {
+                echo "Esto solo se ve si estas logeado y no eres admin";
+                echo "El usuario actual es: " . $_SESSION['user'];
+            }
+        ?>
         <form action="form.php" method="post">
         </form>
 
         <!-- Si el usuario es el administrador se muestra esto -->
+        <?php
+            session_start();
+            if (isset($_SESSION['user']) == 'admin')
+            {
+                echo "Esto solo se ve si estas logeado y eres admin";
+                echo "El usuario actual es: " . $_SESSION['user'];
+            }
+        ?>
         
     </body>
 </html>
