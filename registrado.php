@@ -1,10 +1,9 @@
-<?php session_start(); ?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+<?php 
+    session_start(); 
+?>
+<!-- Página que muestra cuando te has registrado -->
+<!DOCTYPE html>
+<html lang=es>
     <head>
         <meta charset="UTF-8">
         <title></title>
@@ -14,6 +13,10 @@ and open the template in the editor.
         <p>
             Usuario <?php echo $_SESSION['usuario'];?> registrado!
         </p>
-        
+        <p>
+            <form action="index.php" method="post">
+                <input type="submit" name="boton" value="Inicio">
+            </form>
+        </p>
     </body>
 </html>
