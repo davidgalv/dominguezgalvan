@@ -47,7 +47,7 @@
             $_SESSION['usuario']=$_POST['user'];
             require_once './connection.php';
             $connect = new connection();
-            $sql = "INSERT INTO usuarios (user,name,passwd,mail) VALUES ('".$_POST['user']."','".$_POST['name']."','".$_POST['pass']."','".$_POST['mail']."')";
+            $sql = "INSERT INTO usuarios (user,name,passwd,mail,admin) VALUES ('".$_POST['user']."','".$_POST['name']."',MD5('".$_POST['pass']."'),'".$_POST['mail']."',false)";
             $connect->execSQL($sql);
             header('Location: http://localhost/dominguezgalvan/registrado.php');
             
