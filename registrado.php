@@ -13,6 +13,10 @@ and open the template in the editor.
         <h1>Usuario Registrado!</h1>
         <p>
             Usuario <?php echo $_SESSION['usuario'];?> registrado!
+            <br><br>
+        <form method="post" action="index.php">
+            <input type="submit" value="Volver al inicio!">
+        </form>
         </p>
         
     </body>

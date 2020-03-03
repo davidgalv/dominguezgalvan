@@ -1,16 +1,28 @@
-<!DOCTYPE html>
-<!-- Formulario para iniciar sesión -->
+<?php
+    session_start();
+    if (isset($_POST['boton'])) {
+        $user = $_POST['user'];
+        $passwd = $_POST['pass'];
+        if ((empty($user)) || (empty($passwd))) {
+            $error = 'Introduce usuario y contraseña!';
+        } else {
+            require_once './loguear.php';
+            $log = new loguear();
+            $login = $log->log($user, $passwd);
+            $_SESSION['sesion'] = $login;
+            header('Location: ./index.php');
+        }
+    }
+?>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
         <title>Inicio de sesión</title>
     </head>
     <body>
-<<<<<<< HEAD
         <h2>Proyecto PHP</h2>
-        <form action="" method="post">
+        <form action="login.php" method="post">
             <label>Nickname:</label>
-            <img src="">
             <br>
             <input type="text" name="user">
             <br>
@@ -18,30 +30,6 @@
             <br>
             <input type="submit" name="boton" value="Continuar">
         </form>
-        <?php
-        // put your code here
-        ?>
-=======
-        <h2>Inicio de sesión</h2>
-        <form action="logeado.php" method="post">
-            <table>
-                <tr>
-                    <td>Nickmane</td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="user"></td>
-                </tr>
-                <tr>
-                    <td>Contraseña</td>
-                </tr>
-                <tr>
-                    <td><input type="password" name="pass"></td>
-                </tr>
-                <tr>
-                    <td><input type="submit" name="boton" value="Iniciar sesión"></td>
-                </tr>
-            </table>
-        </form>
->>>>>>> 710df00ce0044156f1c0d123f06a3c12fe02b211
-    </body>
+        
+        </body>
 </html>

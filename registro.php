@@ -49,9 +49,11 @@
             $connect = new connection();
             $sql = "INSERT INTO usuarios (user,name,passwd,mail,admin) VALUES ('".$_POST['user']."','".$_POST['name']."',MD5('".$_POST['pass']."'),'".$_POST['mail']."',false)";
             $connect->execSQL($sql);
-            header('Location: http://localhost/dominguezgalvan/registrado.php');
-            
-            printf("pollas como ollas");            
+            $crearcarpeta = "./imagenes/".$_POST['name']."/"; 
+            if (!file_exists($crearcarpeta)) { 
+                mkdir($crearcarpeta, 0777, true);
+            }
+            header('Location: ./registrado.php');       
         }
         ?>
     </body>

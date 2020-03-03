@@ -1,7 +1,7 @@
 <?php
-    session_start();
+session_start();
 ?>
-<!DOCTYPE html>
+
 <!-- Página principal, donde se muestran las fotos -->
 <html lang="es">
     <head>
@@ -9,41 +9,67 @@
         <title>Página de Inicio</title>
     </head>
     <body>
-        <!-- Si no has iniciado sesión se muestra esto -->
-        <form action="login.php" method="post">
-            <input type="submit" name="boton" value="Iniciar sesión">
-        </form>
-        <form action="registro.php" method="post">
-            <input type="submit" name="boton" value="Registrar">
-        </form>
-        
 
-        <!-- Si la sesión está iniciada se muestra esto -->
         <?php
-            if (isset($_SESSION['user']))
-            {
-                echo "Esto solo se ve si estas logeado y no eres admin";
-                echo "El usuario actual es: " . $_SESSION['user'];
-            }
-            /*
-            if (!empty($_SESSION["user"])) 
-            {
-                echo "<input type="submit" name="boton" value="Cerrar sesión">";
-                //echo "<a href="logout.php" title="Cerrar sesión">Bienvenid@</a>" . $_SESSION["user"];
-            }
-            */
-        ?>
-        <form action="form.php" method="post">
-        </form>
-
-        <!-- Si el usuario es el administrador se muestra esto -->
-        <?php
-            if (isset($_SESSION['user']) == 'admin')
-            {
-                echo "Esto solo se ve si estas logeado y eres admin";
-                echo "El usuario actual es: " . $_SESSION['user'];
-            }
-        ?>
+        if (isset($_POST['sessionoff'])) {
+            session_destroy();
+            header('Refresh: 0');
+        }
         
+        if (!empty($_SESSION['sesion'])) {
+            echo "<form method='post' action='update.php'>
+                <input type='submit' name='update' value='Editar datos'>
+                </form>";
+            
+            echo "<form method='post' action='index.php'>
+                <input type='submit' name='sessionoff' value='Cerrar Sesion'>
+                </form>";
+            
+            echo "<form method='post' action='img_registro.php'>
+                <input type='submit' name='uploadimg' value='Publicar foto'>
+                </form>";
+            
+            echo "<table>";
+            echo "<tr>";
+            echo "<th>Usuario</th><th>Título</th><th></th><th>Pie de foto</th><th>Fecha</th>";
+            echo "</tr>";
+            require_once './connection.php';
+            $connect = new connection();
+            $sql = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id ORDER BY i.id DESC";
+            $result = $connect->execSQL($sql);
+            
+            while ($lane = $result->fetch_assoc()) {
+                echo "<tr><td>".$lane['user']."</td><td>".$lane['name']."</td><td><img height='100px' width='100px' src='".$lane['ubication']."'></td>"
+                        . "<td>".$lane['description']."</td><td>".$lane['fecha']."</td></td>";
+            }
+            
+            echo "</table>";
+        } else {
+            
+            echo "<form method='post' action='login.php'>
+                <input type='submit' name='update' value='Iniciar Sesion'>
+                </form>";
+            
+            echo "<form method='post' action='registro.php'>
+                <input type='submit' name='update' value='Registrarse'>
+                </form>";
+            
+            echo "<table>";
+            echo "<tr>";
+            echo "<th>Usuario</th><th>Título</th><th></th><th>Pie de foto</th><th>Fecha</th>";
+            echo "</tr>";
+            echo "<tr>";
+            require_once './connection.php';
+            $connect = new connection();
+            $sql = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id ORDER BY i.id DESC";
+            $result = $connect->execSQL($sql);
+            
+            while ($lane = $result->fetch_assoc()) {
+                echo "<tr><td>".$lane['user']."</td><td>".$lane['name']."</td><td><img height='100px' width='100px' src='".$lane['ubication']."'></td>"
+                        . "<td>".$lane['description']."</td><td>".$lane['fecha']."</td></tr>";
+        }
+        }
+        ?>
+
     </body>
 </html>
