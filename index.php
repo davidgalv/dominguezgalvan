@@ -9,7 +9,6 @@ session_start();
         <title>Página de Inicio</title>
     </head>
     <body>
-
         <?php
         if (isset($_POST['sessionoff'])) {
             session_destroy();
