@@ -17,6 +17,24 @@ session_start();
     <body style="background-color: #2B2B2B; color: white; margin-top: 25px">
         <div class="container">
         <div style="position: relative; float: left; width: 300px"> <h1>Proyecto IAW</h1></div>
+        <form method="post" action="index.php">
+            <?php
+            require_once './connection.php';
+            $sel = new connection();
+            $usu = "SELECT user FROM usuarios WHERE id IN (SELECT userid FROM imagenes WHERE ubication is not null)";
+            $selc = $sel->execSQL($usu);
+            echo "<select name='usuario'>";
+            echo "<option value='0'>Mostrar todos</option>";
+            while ($select = $selc->fetch_assoc()) {
+                                  
+                echo "<option value='".$select['user']."'>".$select['user']."</option>";
+                
+                
+            }
+            echo "</select>";
+            ?>
+            <button type="submit" name="boton_cons">·</button>
+        </form>
         <?php
         if (isset($_POST['sessionoff'])) {
             session_destroy();
@@ -24,25 +42,11 @@ session_start();
         }
 
         if (!empty($_SESSION['sesion'])) {
-
-            echo "<form method='post' action='update.php'>
-                        <div style='position: relative; float: right; padding-left: 10px'>    
-                            <input type='submit' name='update' class='btn btn-primary' value='Editar datos'>
-                        </div>
+            
+                echo "<form method='post' action='index.php'>
+                <input type='submit' name='sessionoff' value='Cerrar Sesion'>
                 </form>";
-
-            echo "<form method='post' action='index.php'>
-                    <div style='position: relative; float: right; padding-left: 10px'>
-                        <input type='submit' name='sessionoff' class='btn btn-primary' value='Cerrar Sesion'>
-                    </div>
-                </form>";
-
-            echo "<form method='post' action='img_registro.php'>
-                    <div style='position: relative; float: right; padding-left: 10px'>
-                        <input type='submit' name='uploadimg' class='btn btn-primary' value='Publicar foto'>
-                    </div>
-                </form>";
-
+            
             if ($_SESSION['sesion'] == 'admin') {
                 echo "<div style='clear: both; padding-top: 20px'>";
                 echo "<table class='table' style='color: white'>";
@@ -53,8 +57,21 @@ session_start();
                 require_once './connection.php';
                 $connect = new connection();
                 $sql = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id ORDER BY i.id DESC";
-                $result = $connect->execSQL($sql);
-               
+                
+                if (isset($_POST['usuario'])){
+                    if ($_POST['usuario'] == '0') {
+                        $sql = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id ORDER BY i.id DESC";
+                        $result = $connect->execSQL($sql);
+                    } else {
+                        $usuario = $_POST['usuario'];
+                        $sql2 = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id AND u.user = '".$usuario."'ORDER BY i.id DESC";;
+                        $result = $connect->execSQL($sql2);  
+                    }
+                                       
+                } else {
+                    $result = $connect->execSQL($sql);
+                }
+                               
                 while ($lane = $result->fetch_assoc()) {
                 echo "<tr><td>" . $lane['user'] . "</td><td>" . $lane['name'] . "</td><td><img height='100px' width='100px' src='" . $lane['ubication'] . "'></td>"
                 . "<td>" . $lane['description'] . "</td><td>" . $lane['fecha'] . "</td>"
@@ -63,18 +80,43 @@ session_start();
                 }
                 echo "</table>";
             } else {
-                echo "<div style='clear: both; padding-top: 20px'>";
-                echo "<table class='table' style='color: white'>";
+                echo "<form method='post' action='update.php'>
+                <input type='submit' name='update' value='Editar datos'>
+                </form>";
+
+                echo "<form method='post' action='index.php'>
+                <input type='submit' name='sessionoff' value='Cerrar Sesion'>
+                </form>";
+
+                echo "<form method='post' action='img_registro.php'>
+                <input type='submit' name='uploadimg' value='Publicar foto'>
+                </form>";
+                echo "<table>";
                 echo "<tr>";
                 echo "<th>Usuario</th><th>Título</th><th>Imagen</th><th>Pie de foto</th><th>Fecha</th>";
                 echo "</tr>";
                 echo "<tr>";
                 require_once './connection.php';
                 $connect = new connection();
-                $sql = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id ORDER BY i.id DESC";
-                $result = $connect->execSQL($sql);
+                               
+                if (isset($_POST['usuario'])){
+                    if ($_POST['usuario'] == '0') {
+                        $sql = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id ORDER BY i.id DESC";
+                        $result = $connect->execSQL($sql);
+                    } else {
+                        $usuario = $_POST['usuario'];
+                        $sql2 = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id AND u.user = '".$usuario."'ORDER BY i.id DESC";;
+                        $result = $connect->execSQL($sql2);  
+                    }
+                                       
+                } else {
+                    $sql = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id ORDER BY i.id DESC";
+                    $result = $connect->execSQL($sql);
+                }
+                   
 
                 while ($lane = $result->fetch_assoc()) {
+                    
                 echo "<tr><td>" . $lane['user'] . "</td><td>" . $lane['name'] . "</td><td><img height='100px' width='100px' src='" . $lane['ubication'] . "'></td>"
                 . "<td>" . $lane['description'] . "</td><td>" . $lane['fecha'] . "</td></tr>";
                 }
@@ -104,7 +146,21 @@ session_start();
             require_once './connection.php';
             $connect = new connection();
             $sql = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id ORDER BY i.id DESC";
-            $result = $connect->execSQL($sql);
+            
+                if (isset($_POST['usuario'])){
+                    if ($_POST['usuario'] == '0') {
+                        $sql = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id ORDER BY i.id DESC";
+                        $result = $connect->execSQL($sql);
+                    } else {
+                        $usuario = $_POST['usuario'];
+                        $sql2 = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id AND u.user = '".$usuario."'ORDER BY i.id DESC";;
+                        $result = $connect->execSQL($sql2);  
+                    }
+                                       
+                } else {
+                    $result = $connect->execSQL($sql);
+                }
+                   
 
             while ($lane = $result->fetch_assoc()) {
             echo "<tr><td>" . $lane['user'] . "</td><td>" . $lane['name'] . "</td><td><img height='100px' width='100px' src='" . $lane['ubication'] . "'></td>"
