@@ -5,18 +5,10 @@ session_start();
 <!-- Página principal, donde se muestran las fotos -->
 <html lang="es">
     <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-        <title>Página principal</title>
+        <meta charset="UTF-8">
+        <title>Página de Inicio</title>
     </head>
-    <body style="background-color: #2B2B2B; color: white; margin-top: 25px">
-        <div class="container">
-        <div style="position: relative; float: left; width: 300px"> <h1>Proyecto IAW</h1></div>
+    <body>
         <?php
         if (isset($_POST['sessionoff'])) {
             session_destroy();
@@ -75,20 +67,15 @@ session_start();
                 }
         } else {
 
-            echo "<form method='post' action='registro.php'>
-                    <div style='position: relative; float: right; padding-left: 10px'>
-                        <input type='submit' name='update' class='btn btn-primary' value='Registrarse'>
-                    </div>
-                </form>";
-
             echo "<form method='post' action='login.php'>
-                    <div style='position: relative; float: right'>
-                        <input type='submit' name='update' class='btn btn-primary' value='Iniciar Sesion'>
-                    </div>
+                <input type='submit' name='update' value='Iniciar Sesion'>
                 </form>";
 
-            echo "<div style='clear: both; padding-top: 20px'>";
-            echo "<table class='table' style='color: white'>";
+            echo "<form method='post' action='registro.php'>
+                <input type='submit' name='update' value='Registrarse'>
+                </form>";
+
+            echo "<table>";
             echo "<tr>";
             echo "<th>Usuario</th><th>Título</th><th></th><th>Pie de foto</th><th>Fecha</th>";
             echo "</tr>";
@@ -103,14 +90,8 @@ session_start();
             . "<td>" . $lane['description'] . "</td><td>" . $lane['fecha'] . "</td></tr>";
             }
             echo "</table>";
-            echo "</div>";
         }
         ?>
-        </div>
-        <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
     </body>
 </html>
