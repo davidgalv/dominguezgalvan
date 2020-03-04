@@ -70,13 +70,13 @@ session_start();
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
 			<div class="modal-header">				
-				<h4 class="modal-title">Confirmación</h4>
+				<h4 class="modal-title">¿Deséa eliminar el registro?</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
 				<form action="index.php" method="post">
 					<div class="form-group">
-						<input type="submit" class="btn btn-danger btn-block btn-lg" style="background-color:red" value="Sí">
+                                            <button type="submit" name='borrar_reg' class="btn btn-danger btn-block btn-lg" style="background-color:red" >Sí</button>
 					</div>
                     <div class="form-group">
 						<input type="submit" class="btn btn-danger btn-block btn-lg" style="background-color:red" value="No">
@@ -117,6 +117,14 @@ session_start();
             </form>
             </div>
         <?php
+        if (isset($_POST['borrar_reg'])) {
+            require_once './connection.php';
+            $delete = new connection();
+            $delete->execSQL("DELETE FROM imagenes WHERE id = ".$_POST['borrar_reg']);
+            header('Refresh: 0');
+        }
+        
+        
         if (isset($_POST['sessionoff'])) {
             session_destroy();
             header('Refresh: 0');
@@ -159,9 +167,9 @@ session_start();
                 echo "<tr><td>" . $lane['user'] . "</td><td>" . $lane['name'] . "</td><td><img height='100px' width='100px' src='" . $lane['ubication'] . "'></td>"
                 . "<td>" . $lane['description'] . "</td><td>" . $lane['fecha'] . "</td>"
                 . "<td><form method='post' action='img_update.php'><button type='submit' name='edit_img' value='".$lane['id']."'>·</button></form></td>"
-                . "<td><form method='post' action='index.php'><!-- Botón modal Administración -->
-                <div style='position: relative; float: left; padding-left: 30px; padding-top: 15px; width: 150px'><a href='#sino' class='btn btn-danger btn-lg' data-toggle='modal'>Administración</a>
-                </div>.</button></form></td></tr>";
+                . "<td><form method='post' action='index.php'>
+                <div style='position: relative; float: left; padding-left: 30px; padding-top: 15px; width: 150px'><button type='button' name='del_img' class='btn btn-danger btn-lg' data-toggle='modal' data-target='#sino$lane[id]'>Administración</button>
+                </div></form></td></tr>";
                 }
                 echo "</table>";
             } else {
@@ -259,7 +267,7 @@ session_start();
             }
         ?>
         
-        </div>
+        
         <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
