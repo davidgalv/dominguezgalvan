@@ -27,7 +27,7 @@ session_start();
                     $sel = new connection();
                     $usu = "SELECT user FROM usuarios WHERE id IN (SELECT userid FROM imagenes WHERE ubication is not null)";
                     $selc = $sel->execSQL($usu);
-                    echo "<select name='usuario'>";
+                    echo "<select class='custom-select' name='usuario'>";
                     echo "<option value='0'>Mostrar todos</option>";
                     while ($select = $selc->fetch_assoc()) {
                                         
@@ -39,7 +39,7 @@ session_start();
                     ?>
                 </td>
                 <td>
-                    <button type="submit" class="btn btn-primary" name="boton_cons"><img src="imagenes/lupa.png" style="width: 20px; height: 20px"></button>
+                    <button type="submit" class="btn btn-light" name="boton_cons"><img src="imagenes/lupa.png" style="width: 23px; height: 24px"></button>
                 </td>
             </table>
             </form>
@@ -54,7 +54,7 @@ session_start();
                 echo "<div style='position: relative; float: right; padding-left: 15px'><p>Bienvenido, ". $_SESSION['sesion'] ."!</p></div>";
                 echo "<form method='post' action='index.php'>
                         <div style='position: relative; float: right; padding-left: 10px'> 
-                            <input type='submit' name='sessionoff' class='btn btn-primary' value='Cerrar Sesion'>
+                            <input type='submit' name='sessionoff' class='btn btn-danger' value='Cerrar Sesion'>
                         </div>
                 </form>";
             
@@ -93,13 +93,13 @@ session_start();
             } else {
                 echo "<form method='post' action='update.php'>
                         <div style='position: relative; float: right; padding-left: 10px'> 
-                            <input type='submit' name='update' class='btn btn-primary' value='Editar datos'>
+                            <input type='submit' name='update' class='btn btn-danger' value='Editar datos'>
                         </div>
                 </form>";
 
                 echo "<form method='post' action='img_registro.php'>
                         <div style='position: relative; float: right; padding-left: 10px'> 
-                            <input type='submit' name='uploadimg' class='btn btn-primary' value='Publicar foto'>
+                            <input type='submit' name='uploadimg' class='btn btn-danger' value='Publicar foto'>
                         </div>
                 </form>";
                 echo "<div style='clear: both; padding-top: 20px'>";
@@ -139,13 +139,13 @@ session_start();
 
             echo "<form method='post' action='registro.php'>
                     <div style='position: relative; float: right; padding-left: 10px'>
-                        <input type='submit' name='update' class='btn btn-primary' value='Registrarse'>
+                        <input type='submit' name='update' class='btn btn-danger' value='Registrarse'>
                     </div>
                 </form>";
 
             echo "<form method='post' action='login.php'>
                     <div style='position: relative; float: right'>
-                        <input type='submit' name='update' class='btn btn-primary' value='Iniciar Sesion'>
+                        <input type='submit' name='update' class='btn btn-danger' value='Iniciar Sesion'>
                     </div>
                 </form>";
 
