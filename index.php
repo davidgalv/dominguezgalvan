@@ -88,6 +88,7 @@ session_start();
                 . "<td>" . $lane['description'] . "</td><td>" . $lane['fecha'] . "</td>"
                 . "<td><form method='post' action='img_update.php'><button type='submit' name='edit_img' value='".$lane['id']."'>·</button></form></td>"
                 . "<td><form method='post' action='img_delete.php'><button type='submit' name='del_img' value='".$lane['id']."'>·</button></form></td></tr>";
+                . "<td><form method='post' action='index.php'><button type='submit' value='".$lane['id']."' class='btn btn-danger' data-toggle='modal' data-target='#sino'>·</button></form></td></tr>";
                 }
                 echo "</table>";
             } else {
@@ -117,7 +118,7 @@ session_start();
                         $result = $connect->execSQL($sql);
                     } else {
                         $usuario = $_POST['usuario'];
-                        $sql2 = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id AND u.user = '".$usuario."'ORDER BY i.id DESC";;
+                        $sql2 = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id AND u.user = '".$usuario."'ORDER BY i.id DESC";
                         $result = $connect->execSQL($sql2);  
                     }
                                        
@@ -180,7 +181,31 @@ session_start();
             }
             echo "</table>";
             echo "</div>";
-        }
+            
+            if (isset($_POST['del_img'])) {
+            echo    "<div class='modal fade' id='sino' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                <div class='modal-dialog' role='document'>
+                  <div class='modal-content>
+                    <div class='modal-header'>
+                      <h5 class='modal-title' id='sino'>Modal title</h5>
+                      <button type='button class='close' data-dismiss='modal' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                      </button>
+                    </div>
+                    <div class='modal-body'>
+                      ...
+                    </div>
+                    <div class='modal-footer'>
+                      <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                      <button type='button' class='btn btn-primary'>Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>";
+            }
+            
+            
+            }
         ?>
         
         </div>
