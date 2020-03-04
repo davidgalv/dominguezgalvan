@@ -67,15 +67,15 @@ session_start();
                 echo "<tr>";
                 require_once './connection.php';
                 $connect = new connection();
-                $sql = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id ORDER BY i.id DESC";
+                $sql = "SELECT u.user,i.name,i.description,i.fecha,i.ubication,i.id FROM imagenes i, usuarios u WHERE i.userid = u.id ORDER BY i.id DESC";
                 
                 if (isset($_POST['usuario'])){
                     if ($_POST['usuario'] == '0') {
-                        $sql = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id ORDER BY i.id DESC";
+                        $sql = "SELECT u.user,i.name,i.description,i.fecha,i.ubication,i.id FROM imagenes i, usuarios u WHERE i.userid = u.id ORDER BY i.id DESC";
                         $result = $connect->execSQL($sql);
                     } else {
                         $usuario = $_POST['usuario'];
-                        $sql2 = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id AND u.user = '".$usuario."'ORDER BY i.id DESC";;
+                        $sql2 = "SELECT u.user,i.name,i.description,i.fecha,i.ubication,i.id FROM imagenes i, usuarios u WHERE i.userid = u.id AND u.user = '".$usuario."'ORDER BY i.id DESC";;
                         $result = $connect->execSQL($sql2);  
                     }
                                        
@@ -86,8 +86,8 @@ session_start();
                 while ($lane = $result->fetch_assoc()) {
                 echo "<tr><td>" . $lane['user'] . "</td><td>" . $lane['name'] . "</td><td><img height='100px' width='100px' src='" . $lane['ubication'] . "'></td>"
                 . "<td>" . $lane['description'] . "</td><td>" . $lane['fecha'] . "</td>"
-                . "<td><form method='post' action='img_update.php'><button type='submit' name='edit_img'>·</button></form></td>"
-                . "<td><form method='post' action='img_delete.php'><button type='submit' name='del_img'>·</button></form></td></tr>";
+                . "<td><form method='post' action='img_update.php'><button type='submit' name='edit_img' value='".$lane['id']."'>·</button></form></td>"
+                . "<td><form method='post' action='img_delete.php'><button type='submit' name='del_img' value='".$lane['id']."'>·</button></form></td></tr>";
                 }
                 echo "</table>";
             } else {
