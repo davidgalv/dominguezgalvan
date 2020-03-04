@@ -25,8 +25,7 @@ CREATE TABLE IF NOT EXISTS `imagenes` (
   `ubication` varchar(255) NOT NULL,
   `userid` mediumint(9) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `userid` (`userid`),
-  CONSTRAINT `imagenes_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `usuarios` (`id`)
+  KEY `userid` (`userid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla dominguezgalvan.imagenes: ~3 rows (aproximadamente)
