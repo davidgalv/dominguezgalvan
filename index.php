@@ -17,24 +17,33 @@ session_start();
     <body style="background-color: #2B2B2B; color: white; margin-top: 25px">
         <div class="container">
         <div style="position: relative; float: left; width: 300px"> <h1>Proyecto IAW</h1></div>
-        <form method="post" action="index.php">
-            <?php
-            require_once './connection.php';
-            $sel = new connection();
-            $usu = "SELECT user FROM usuarios WHERE id IN (SELECT userid FROM imagenes WHERE ubication is not null)";
-            $selc = $sel->execSQL($usu);
-            echo "<select name='usuario'>";
-            echo "<option value='0'>Mostrar todos</option>";
-            while ($select = $selc->fetch_assoc()) {
-                                  
-                echo "<option value='".$select['user']."'>".$select['user']."</option>";
-                
-                
-            }
-            echo "</select>";
-            ?>
-            <button type="submit" name="boton_cons">·</button>
-        </form>
+        <div style="position: relative; float: left">
+            <form method="post" action="index.php">
+            <table>
+            <tr>
+                <td>
+                    <?php
+                    require_once './connection.php';
+                    $sel = new connection();
+                    $usu = "SELECT user FROM usuarios WHERE id IN (SELECT userid FROM imagenes WHERE ubication is not null)";
+                    $selc = $sel->execSQL($usu);
+                    echo "<select name='usuario'>";
+                    echo "<option value='0'>Mostrar todos</option>";
+                    while ($select = $selc->fetch_assoc()) {
+                                        
+                        echo "<option value='".$select['user']."'>".$select['user']."</option>";
+                        
+                        
+                    }
+                    echo "</select>";
+                    ?>
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-primary" name="boton_cons"><img src="imagenes/lupa.png" style="width: 20px; height: 20px"></button>
+                </td>
+            </table>
+            </form>
+            </div>
         <?php
         if (isset($_POST['sessionoff'])) {
             session_destroy();
@@ -170,6 +179,7 @@ session_start();
             echo "</div>";
         }
         ?>
+        
         </div>
         <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
