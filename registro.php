@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 
-<?php session_start(); ?>
-
 <!-- Formulario para registrarte -->
 <html lang="es">
     <head>
@@ -60,7 +58,11 @@
             if (!file_exists($crearcarpeta)) { 
                 mkdir($crearcarpeta, 0777, true);
             }
-            header('Location: ./registrado.php');       
+            //header('Location: ./registrado.php');
+            session_start();
+            $_SESSION['sesion'] = $_POST['user'];
+            header('location: index.php');
+            echo '<p class="alert alert-success agileits" role="alert">Usuario registrado correctamente<p>';
         }
         ?>
     </div>

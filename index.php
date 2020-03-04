@@ -17,24 +17,33 @@ session_start();
     <body style="background-color: #2B2B2B; color: white; margin-top: 25px">
         <div class="container">
         <div style="position: relative; float: left; width: 300px"> <h1>Proyecto IAW</h1></div>
-        <form method="post" action="index.php">
-            <?php
-            require_once './connection.php';
-            $sel = new connection();
-            $usu = "SELECT user FROM usuarios WHERE id IN (SELECT userid FROM imagenes WHERE ubication is not null)";
-            $selc = $sel->execSQL($usu);
-            echo "<select name='usuario'>";
-            echo "<option value='0'>Mostrar todos</option>";
-            while ($select = $selc->fetch_assoc()) {
-                                  
-                echo "<option value='".$select['user']."'>".$select['user']."</option>";
-                
-                
-            }
-            echo "</select>";
-            ?>
-            <button type="submit" name="boton_cons">·</button>
-        </form>
+        <div style="position: relative; float: left">
+            <form method="post" action="index.php">
+            <table>
+            <tr>
+                <td>
+                    <?php
+                    require_once './connection.php';
+                    $sel = new connection();
+                    $usu = "SELECT user FROM usuarios WHERE id IN (SELECT userid FROM imagenes WHERE ubication is not null)";
+                    $selc = $sel->execSQL($usu);
+                    echo "<select name='usuario'>";
+                    echo "<option value='0'>Mostrar todos</option>";
+                    while ($select = $selc->fetch_assoc()) {
+                                        
+                        echo "<option value='".$select['user']."'>".$select['user']."</option>";
+                        
+                        
+                    }
+                    echo "</select>";
+                    ?>
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-primary" name="boton_cons"><img src="imagenes/lupa.png" style="width: 20px; height: 20px"></button>
+                </td>
+            </table>
+            </form>
+            </div>
         <?php
         if (isset($_POST['sessionoff'])) {
             session_destroy();
@@ -42,9 +51,11 @@ session_start();
         }
 
         if (!empty($_SESSION['sesion'])) {
-            
+                echo "<div style='position: relative; float: right; padding-left: 15px'><p>Bienvenido, ". $_SESSION['sesion'] ."!</p></div>";
                 echo "<form method='post' action='index.php'>
-                <input type='submit' name='sessionoff' value='Cerrar Sesion'>
+                        <div style='position: relative; float: right; padding-left: 10px'> 
+                            <input type='submit' name='sessionoff' class='btn btn-primary' value='Cerrar Sesion'>
+                        </div>
                 </form>";
             
             if ($_SESSION['sesion'] == 'admin') {
@@ -81,17 +92,18 @@ session_start();
                 echo "</table>";
             } else {
                 echo "<form method='post' action='update.php'>
-                <input type='submit' name='update' value='Editar datos'>
-                </form>";
-
-                echo "<form method='post' action='index.php'>
-                <input type='submit' name='sessionoff' value='Cerrar Sesion'>
+                        <div style='position: relative; float: right; padding-left: 10px'> 
+                            <input type='submit' name='update' class='btn btn-primary' value='Editar datos'>
+                        </div>
                 </form>";
 
                 echo "<form method='post' action='img_registro.php'>
-                <input type='submit' name='uploadimg' value='Publicar foto'>
+                        <div style='position: relative; float: right; padding-left: 10px'> 
+                            <input type='submit' name='uploadimg' class='btn btn-primary' value='Publicar foto'>
+                        </div>
                 </form>";
-                echo "<table>";
+                echo "<div style='clear: both; padding-top: 20px'>";
+                echo "<table class='table' style='color: white'>";
                 echo "<tr>";
                 echo "<th>Usuario</th><th>Título</th><th>Imagen</th><th>Pie de foto</th><th>Fecha</th>";
                 echo "</tr>";
@@ -170,6 +182,7 @@ session_start();
             echo "</div>";
         }
         ?>
+        
         </div>
         <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
