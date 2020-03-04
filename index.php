@@ -26,21 +26,28 @@ session_start();
         if (!empty($_SESSION['sesion'])) {
 
             echo "<form method='post' action='update.php'>
-                <input type='submit' name='update' value='Editar datos'>
+                        <div style='position: relative; float: right; padding-left: 10px'>    
+                            <input type='submit' name='update' class='btn btn-primary' value='Editar datos'>
+                        </div>
                 </form>";
 
             echo "<form method='post' action='index.php'>
-                <input type='submit' name='sessionoff' value='Cerrar Sesion'>
+                    <div style='position: relative; float: right; padding-left: 10px'>
+                        <input type='submit' name='sessionoff' class='btn btn-primary' value='Cerrar Sesion'>
+                    </div>
                 </form>";
 
             echo "<form method='post' action='img_registro.php'>
-                <input type='submit' name='uploadimg' value='Publicar foto'>
+                    <div style='position: relative; float: right; padding-left: 10px'>
+                        <input type='submit' name='uploadimg' class='btn btn-primary' value='Publicar foto'>
+                    </div>
                 </form>";
 
             if ($_SESSION['sesion'] == 'admin') {
-                echo "<table>";
+                echo "<div style='clear: both; padding-top: 20px'>";
+                echo "<table class='table' style='color: white'>";
                 echo "<tr>";
-                echo "<th>Usuario</th><th>Título</th><th></th><th>Pie de foto</th><th>Fecha</th><th>Editar</th><th>Borrar</th>";
+                echo "<th>Usuario</th><th>Título</th><th>Imagen</th><th>Pie de foto</th><th>Fecha</th><th>Editar</th><th>Borrar</th>";
                 echo "</tr>";
                 echo "<tr>";
                 require_once './connection.php';
@@ -56,9 +63,10 @@ session_start();
                 }
                 echo "</table>";
             } else {
-                echo "<table>";
+                echo "<div style='clear: both; padding-top: 20px'>";
+                echo "<table class='table' style='color: white'>";
                 echo "<tr>";
-                echo "<th>Usuario</th><th>Título</th><th></th><th>Pie de foto</th><th>Fecha</th>";
+                echo "<th>Usuario</th><th>Título</th><th>Imagen</th><th>Pie de foto</th><th>Fecha</th>";
                 echo "</tr>";
                 echo "<tr>";
                 require_once './connection.php';
@@ -90,7 +98,7 @@ session_start();
             echo "<div style='clear: both; padding-top: 20px'>";
             echo "<table class='table' style='color: white'>";
             echo "<tr>";
-            echo "<th>Usuario</th><th>Título</th><th></th><th>Pie de foto</th><th>Fecha</th>";
+            echo "<th>Usuario</th><th>Título</th><th>Imagen</th><th>Pie de foto</th><th>Fecha</th>";
             echo "</tr>";
             echo "<tr>";
             require_once './connection.php';
