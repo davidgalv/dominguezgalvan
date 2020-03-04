@@ -51,11 +51,11 @@ if (!empty($_SESSION['sesion'])) {
                     <td><input type="text" name="mail" value="<?php echo $lane['mail'] ?>"></td>
                 </tr>
                 <tr>
-                    <td style="padding-top: 10px; padding-bottom: 10px"><input type="submit" name="boton" class="btn btn-primary" value="Actualizar datos"></td>
+                    <td style="padding-top: 10px; padding-bottom: 10px"><input type="submit" name="boton" class="btn btn-danger" value="Actualizar datos"></td>
                 </tr>
             </table>
         </form>
-        <a href="index.php"><button type="button" class="btn btn-primary">Volver</button></a>
+        <a href="index.php"><button type="button" class="btn btn-danger">Volver</button></a>
     </div>
 <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

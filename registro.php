@@ -42,7 +42,7 @@
                     <td><input type="email" name="mail"></td>
                 </tr>
                 <tr>
-                    <td style="padding-top: 10px"><input type="submit" name="boton" class="btn btn-primary" value="Registrar Usuario"></td>
+                    <td style="padding-top: 10px"><input type="submit" name="boton" class="btn btn-danger" value="Registrar Usuario"></td>
                 </tr>
             </table>
         </form>

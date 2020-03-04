@@ -34,7 +34,7 @@
                     <td><input type="file" name="img"></td>
                 </tr>
                 <tr>
-                    <td style="padding-top: 10px; padding-bottom: 10px"><input type="submit" name="boton" class="btn btn-primary" value="Insertar imagen"></td>
+                    <td style="padding-top: 10px; padding-bottom: 10px"><input type="submit" name="boton" class="btn btn-danger" value="Insertar imagen"></td>
                 </tr>
             </table>
         </form>

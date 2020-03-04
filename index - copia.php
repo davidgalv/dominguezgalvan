@@ -13,80 +13,8 @@ session_start();
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
         <title>Página principal</title>
-        <style type="text/css">
-    body {
-		font-family: 'Varela Round', sans-serif;
-	}
-	.modal-login {
-		width: 350px;
-	}
-	.modal-login .modal-content {
-		padding: 20px;
-		border-radius: 1px;
-		border: none;
-	}
-	.modal-login .modal-header {
-		border-bottom: none;
-        position: relative;
-		justify-content: center;
-	}
-	.modal-login h4 {
-		text-align: center;
-		font-size: 26px;
-	}
-	.modal-login .form-control, .modal-login .btn {
-		min-height: 40px;
-		border-radius: 1px; 
-	}
-	.modal-login .hint-text {
-		text-align: center;
-		padding-top: 10px;
-	}
-	.modal-login .close {
-        position: absolute;
-		top: -5px;
-		right: -5px;
-	}
-	.modal-login .btn {
-		background: #3498db;
-		border: none;
-		line-height: normal;
-	}
-	.modal-login .btn:hover, .modal-login .btn:focus {
-		background: #248bd0;
-	}
-	.modal-login .hint-text a {
-		color: #999;
-	}
-	.trigger-btn {
-		display: inline-block;
-		margin: 100px auto;
-	}
-</style>
     </head>
     <body style="background-color: #2B2B2B; color: white; margin-top: 25px">
-    <!-- Modal Administración -->
-<div id="sino" class="modal fade" style="color: black">
-	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-			<div class="modal-header">				
-				<h4 class="modal-title">Confirmación</h4>
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			</div>
-			<div class="modal-body">
-				<form action="index.php" method="post">
-					<div class="form-group">
-						<input type="submit" class="btn btn-danger btn-block btn-lg" style="background-color:red" value="Sí">
-					</div>
-                    <div class="form-group">
-						<input type="submit" class="btn btn-danger btn-block btn-lg" style="background-color:red" value="No">
-					</div>
-				</form>			
-			</div>
-		</div>
-	</div>
-</div> 
-<!-- Fin Modal Administración -->
         <div class="container">
         <div style="position: relative; float: left; width: 300px"> <h1>Proyecto IAW</h1></div>
         <div style="position: relative; float: left">
@@ -159,9 +87,7 @@ session_start();
                 echo "<tr><td>" . $lane['user'] . "</td><td>" . $lane['name'] . "</td><td><img height='100px' width='100px' src='" . $lane['ubication'] . "'></td>"
                 . "<td>" . $lane['description'] . "</td><td>" . $lane['fecha'] . "</td>"
                 . "<td><form method='post' action='img_update.php'><button type='submit' name='edit_img' value='".$lane['id']."'>·</button></form></td>"
-                . "<td><form method='post' action='index.php'><!-- Botón modal Administración -->
-                <div style='position: relative; float: left; padding-left: 30px; padding-top: 15px; width: 150px'><a href='#sino' class='btn btn-danger btn-lg' data-toggle='modal'>Administración</a>
-                </div>.</button></form></td></tr>";
+                . "<td><form method='post' action='img_delete.php'><button type='submit' name='del_img' value='".$lane['id']."'>·</button></form></td></tr>";
                 }
                 echo "</table>";
             } else {
@@ -191,7 +117,7 @@ session_start();
                         $result = $connect->execSQL($sql);
                     } else {
                         $usuario = $_POST['usuario'];
-                        $sql2 = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id AND u.user = '".$usuario."'ORDER BY i.id DESC";
+                        $sql2 = "SELECT u.user,i.name,i.description,i.fecha,i.ubication FROM imagenes i, usuarios u WHERE i.userid = u.id AND u.user = '".$usuario."'ORDER BY i.id DESC";;
                         $result = $connect->execSQL($sql2);  
                     }
                                        
@@ -254,31 +180,7 @@ session_start();
             }
             echo "</table>";
             echo "</div>";
-            
-            if (isset($_POST['del_img'])) {
-            echo    "<div class='modal fade' id='sino' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-                <div class='modal-dialog' role='document'>
-                  <div class='modal-content>
-                    <div class='modal-header'>
-                      <h5 class='modal-title' id='sino'>Modal title</h5>
-                      <button type='button class='close' data-dismiss='modal' aria-label='Close'>
-                        <span aria-hidden='true'>&times;</span>
-                      </button>
-                    </div>
-                    <div class='modal-body'>
-                      ...
-                    </div>
-                    <div class='modal-footer'>
-                      <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
-                      <button type='button' class='btn btn-danger'>Save changes</button>
-                    </div>
-                  </div>
-                </div>
-              </div>";
-            }
-            
-            
-            }
+        }
         ?>
         
         </div>

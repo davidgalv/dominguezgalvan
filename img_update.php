@@ -55,7 +55,7 @@
                     <td><input type="text" name="dscr" value="<?php echo $update['description']; ?>"></td>
                 </tr>
                 <tr>
-                    <td style="padding-top: 10px; padding-bottom: 10px"><input type="submit" name="boton" class="btn btn-primary" value="Actualizar registro"></td>
+                    <td style="padding-top: 10px; padding-bottom: 10px"><input type="submit" name="boton" class="btn btn-danger" value="Actualizar registro"></td>
                 </tr>
             </table>
         </form>

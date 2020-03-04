@@ -47,7 +47,7 @@
                     <td><input type="password" name="pass"></td>
                 </tr>
                 <tr>
-                    <td style="padding-top: 10px"><input type="submit" name="boton" class="btn btn-primary" value="Iniciar sesión"></td>
+                    <td style="padding-top: 10px"><input type="submit" name="boton" class="btn btn-danger" value="Iniciar sesión"></td>
                 </tr>
             </table>
         </form>
