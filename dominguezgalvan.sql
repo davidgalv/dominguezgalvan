@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-03-2020 a las 22:48:35
+-- Tiempo de generación: 05-03-2020 a las 22:59:12
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -47,8 +47,7 @@ INSERT INTO `imagenes` (`id`, `name`, `fecha`, `description`, `ubication`, `user
 (29, 'Foto1', '2020-03-05', 'Jaja mira un meme', './imagenes/carlos/Foto1.jpg', 8),
 (30, 'Foto2', '2020-03-05', 'Que picaro', './imagenes/carlos/Foto2.jpg', 8),
 (31, 'Foto3', '2020-03-05', 'Jaja tan cierto', './imagenes/Jakl2/Foto3.jpg', 9),
-(32, 'Foto4', '2020-03-05', 'Tan real xD', './imagenes/Jakl2/Foto4.jpg', 9),
-(33, 'Foto5', '2020-03-05', 'jaja si por favor', './imagenes/Linko/Foto5.jpg', 10);
+(32, 'Foto4', '2020-03-05', 'Tan real xD', './imagenes/Jakl2/Foto4.jpg', 9);
 
 -- --------------------------------------------------------
 
