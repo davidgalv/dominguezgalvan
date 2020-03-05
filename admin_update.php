@@ -1,8 +1,8 @@
 <?php session_start();
-if (!empty($_SESSION['sesion'])) {
+if (!empty($_SESSION['id'])) {
     require_once './connection.php';
     $connect = new connection();
-    $sql = "SELECT id,user,name,mail FROM usuarios WHERE user = '".$_SESSION['sesion']."'";
+    $sql = "SELECT id,user,name,mail FROM usuarios WHERE id = '".$_SESSION['id']."'";
     $result = $connect->execSQL($sql);
     $lane = $result->fetch_assoc();
 }
@@ -10,19 +10,17 @@ if (!empty($_SESSION['sesion'])) {
 if (isset($_POST['boton'])) {
     require_once './connection.php';
     $connect = new connection();
-    $select = "SELECT id FROM usuarios WHERE user = '".$_SESSION['sesion']."'";
-    $consulta = mysqli_query($connect, $select);
-    $id = mysqli_fetch_array($consulta);
-    $sql = "UPDATE usuarios SET user = '".$_POST['nombre']."' WHERE id = $id";
-    $sql2 = "UPDATE usuarios SET name = '".$_POST['name']."' WHERE id = $id";
-    $sql3 = "UPDATE usuarios SET passwd = '".$_POST['passwd']."' WHERE id = $id ";
-    $sql4 = "UPDATE usuarios SET mail = '".$_POST['mail']."' WHERE id = $id";
+    
+    $sql = "UPDATE usuarios SET user = '".$_POST['nombre']."' WHERE id = ".$_POST['id'];
+    $sql2 = "UPDATE usuarios SET name = '".$_POST['name']."' WHERE id = ".$_POST['id'];
+    $sql3 = "UPDATE usuarios SET passwd = '".$_POST['passwd']."' WHERE id = ".$_POST['id'];
+    $sql4 = "UPDATE usuarios SET mail = '".$_POST['mail']."' WHERE id = ".$_POST['id'];
             
     $connect->execSQL($sql);     
     $connect->execSQL($sql2);     
     $connect->execSQL($sql3);
     $connect->execSQL($sql4);
-    header('location: index.php');     
+    header('location: show_users.php');     
 }
 
 ?>
@@ -43,6 +41,12 @@ if (isset($_POST['boton'])) {
         <h2>Actualizar datos</h2>
         <form action="update.php" method="post">
             <table>
+                <tr>
+                    <td>Id:</td>
+                </tr>
+                <tr> 
+                    <td><input type="text" name="id" value="<?php echo $lane['id'] ?>" readonly="readonly"></td>
+                </tr>
                 <tr>
                     <td>Usuario:</td>
                 </tr>
