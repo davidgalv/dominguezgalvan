@@ -51,6 +51,7 @@
                 </tr>
             </table>
         </form>
+        <a href="index.php"><button type="button" class="btn btn-danger">Volver</button></a>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -58,6 +58,7 @@
                     <td style="padding-top: 10px; padding-bottom: 10px"><input type="submit" name="boton" class="btn btn-danger" value="Actualizar registro"></td>
                 </tr>
             </table>
+            <a href="index.php"><button type="button" class="btn btn-danger">Volver</button></a>
         </form>
         
     <!-- Optional JavaScript -->

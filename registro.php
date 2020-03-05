@@ -65,6 +65,7 @@
             echo '<p class="alert alert-success agileits" role="alert">Usuario registrado correctamente<p>';
         }
         ?>
+        <a href="index.php"><button type="button" class="btn btn-danger">Volver</button></a>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
