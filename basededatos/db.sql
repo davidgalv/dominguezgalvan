@@ -28,14 +28,6 @@ CREATE TABLE IF NOT EXISTS `imagenes` (
   KEY `userid` (`userid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dominguezgalvan.imagenes: ~3 rows (aproximadamente)
-/*!40000 ALTER TABLE `imagenes` DISABLE KEYS */;
-REPLACE INTO `imagenes` (`id`, `name`, `fecha`, `description`, `ubication`, `userid`) VALUES
-	(24, 'herpic huele mal', '2020-03-03', 'prueba', './imagenes/victor/herpic huele mal.jpg', 5),
-	(25, 'soy david el no homo', '2020-03-03', 'herpic es mi novio', './imagenes/david/soy david el no homo.jpg', 7),
-	(26, 'barduco come pitos', '2020-03-03', '', './imagenes/diego/barduco come pitos.jpg', 4);
-/*!40000 ALTER TABLE `imagenes` ENABLE KEYS */;
-
 -- Volcando estructura para tabla dominguezgalvan.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` mediumint(9) NOT NULL AUTO_INCREMENT,
@@ -46,15 +38,6 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `admin` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
-
--- Volcando datos para la tabla dominguezgalvan.usuarios: ~4 rows (aproximadamente)
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-REPLACE INTO `usuarios` (`id`, `user`, `name`, `passwd`, `mail`, `admin`) VALUES
-	(4, 'barduco', 'diego', '81dc9bdb52d04dc20036dbd8313ed055', 'dczc@gmail.com', 0),
-	(5, 'linko', 'victor', '81dc9bdb52d04dc20036dbd8313ed055', 'linko@gmail.com', 0),
-	(6, 'herpic', 'carlos', '81dc9bdb52d04dc20036dbd8313ed055', 'herpic@gmail.com', 0),
-	(7, 'jakl2', 'david', '81dc9bdb52d04dc20036dbd8313ed055', 'jak@gmail.com', 0);
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
