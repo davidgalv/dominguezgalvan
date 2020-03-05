@@ -8,6 +8,25 @@ if (!empty($_SESSION['sesion'])) {
     $result = $connect->execSQL($sql);
     $lane = $result->fetch_assoc();
 }
+
+if (isset($_POST['boton'])) {
+    require_once './connection.php';
+    $connect = new connection();
+    $select = "SELECT id FROM usuarios WHERE user = '".$_SESSION['sesion']."'";
+    $consulta = mysqli_query($connect, $select);
+    $id = mysqli_fetch_array($consulta);
+    $sql = "UPDATE usuarios SET user = '".$_POST['nombre']."' WHERE id = $id";
+    $sql2 = "UPDATE usuarios SET name = '".$_POST['name']."' WHERE id = $id";
+    $sql3 = "UPDATE usuarios SET passwd = '".$_POST['passwd']."' WHERE id = $id ";
+    $sql4 = "UPDATE usuarios SET mail = '".$_POST['mail']."' WHERE id = $id";
+            
+    $connect->execSQL($sql);     
+    $connect->execSQL($sql2);     
+    $connect->execSQL($sql3);
+    $connect->execSQL($sql4);
+    header('location: index.php');     
+}
+
 ?>
 <!-- Formulario para registrarte -->
 <html lang="es">
@@ -62,5 +81,6 @@ if (!empty($_SESSION['sesion'])) {
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
     </body>
 </html>
