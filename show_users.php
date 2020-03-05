@@ -49,18 +49,19 @@
                         <td>".$lane['mail']."</td>
                         <td>
                             <form method='post' action='admin_update.php'>
-                                <button type='submit' class='btn btn-light' name='edit_img' value='".$lane['id']."'>
+                                <button type='submit' class='btn btn-light' name='edit_usu' value='".$lane['id']."'>
                                     <img src='imagenes/lapiz.png' style='width: 23px; height: 24px'>
                                 </button>
                             </form>
                         </td>
                         <td>
                             <form method='post' action='show_users.php'>
-                                <button type='submit' class='btn btn-light' name='del_img' value='".$lane['id']."'>
+                                <button type='submit' class='btn btn-light' name='delete_usu' value='".$lane['id']."'>
                                     <img src='imagenes/goma.png' style='width: 23px; height: 24px'>
                                 </button>
                             </form>
-                        </td>";
+                        </td>
+                    </tr>";
            }
         }
         echo"</table>
