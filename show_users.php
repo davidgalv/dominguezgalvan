@@ -28,27 +28,21 @@
         $connect = new connection();
         $sql = "SELECT * FROM usuarios";
         $result = $connect->execSQL($sql);
-        ?>
     
-    <div style='position: relative; clear: both; padding-top: 20px'>
+    echo"<div div style='clear: both; padding-top: 20px'>
         <table class='table' style='color: white'>
             <tr>
-                <th>Id</th>
-                <th>Usuario</th>
-                <th>Nombre</th>
-                <th>Mail</th>
-                <th>Editar</th>
-                <th>Borrar</th>
-        </tr>
-       </table>
-    </div>
+                    <th>Id</th>
+                    <th>Usuario</th>
+                    <th>Nombre</th>
+                    <th>Mail</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+            </tr>";
 
-        <?php
         while ($lane = $result->fetch_assoc()) {
             if ($lane['user'] != 'admin') {
-                echo"<div position: relative; style='clear: both; padding-top: 20px'>";
-                    echo"<table class='table' style='color: white'>";
-                    echo "<tr>
+                    echo"<tr>
                         <td>".$lane['id']."</td>
                         <td>".$lane['user']."</td>
                         <td>".$lane['name']."</td>
@@ -67,11 +61,10 @@
                                 </button>
                             </form>
                         </td>";
-                    echo"</table>";
-                echo"</div>";
            }
         }
-
+        echo"</table>
+        </div>";
         ?>
         
         <div style="position: relative; float: right; width: 300px"><a href="index.php"><button type="button" class="btn btn-danger">Volver</button></a></div>
