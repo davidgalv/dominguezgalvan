@@ -10,8 +10,7 @@
 
 Todas las contraseñas son "1234"
 Los diferentes usuarios creados son:
-					- Jakl2
-					- Herpic
-					- Linko
+					- David
+					- Carlos
 
-Importante: Para iniciar sesión hay que poner el nickname, no el nombre de usuario
+Importante: Para iniciar sesión hay que poner el user.
