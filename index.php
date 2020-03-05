@@ -65,6 +65,10 @@ session_start();
                 </form>";
             
             if ($_SESSION['sesion'] == 'admin') {
+                
+                echo "<button type='button'><a href='show_users.php'>Todos los usuarios</a></button>";
+                
+                
                 echo "<div style='clear: both; padding-top: 20px'>";
                 echo "<table class='table' style='color: white'>";
                 echo "<tr>";

@@ -1,8 +1,8 @@
 <?php session_start();
-if (!empty($_SESSION['id'])) {
+if (isset($_POST['edit_usu'])) {
     require_once './connection.php';
     $connect = new connection();
-    $sql = "SELECT id,user,name,mail FROM usuarios WHERE id = '".$_SESSION['id']."'";
+    $sql = "SELECT id,user,name,passwd,mail FROM usuarios WHERE id = ".$_POST['edit_usu'];
     $result = $connect->execSQL($sql);
     $lane = $result->fetch_assoc();
 }
@@ -11,8 +11,8 @@ if (isset($_POST['boton'])) {
     require_once './connection.php';
     $connect = new connection();
     
-    $sql = "UPDATE usuarios SET user = '".$_POST['nombre']."' WHERE id = ".$_POST['id'];
-    $sql2 = "UPDATE usuarios SET name = '".$_POST['name']."' WHERE id = ".$_POST['id'];
+    $sql = "UPDATE usuarios SET user = '".$_POST['usuario']."' WHERE id = ".$_POST['id'];
+    $sql2 = "UPDATE usuarios SET name = '".$_POST['nombre']."' WHERE id = ".$_POST['id'];
     $sql3 = "UPDATE usuarios SET passwd = '".$_POST['passwd']."' WHERE id = ".$_POST['id'];
     $sql4 = "UPDATE usuarios SET mail = '".$_POST['mail']."' WHERE id = ".$_POST['id'];
             
@@ -39,7 +39,7 @@ if (isset($_POST['boton'])) {
     <body style="background-color: #2B2B2B; color: white; margin-top: 25px">
     <div class="container">
         <h2>Actualizar datos</h2>
-        <form action="update.php" method="post">
+        <form action="admin_update.php" method="post">
             <table>
                 <tr>
                     <td>Id:</td>
@@ -63,7 +63,7 @@ if (isset($_POST['boton'])) {
                     <td>Contraseña:</td>
                 </tr>
                 <tr>
-                    <td><input type="password" name="passd" value=""></td>
+                    <td><input type="password" name="passwd" value="<?php echo $lane['passwd'] ?>"></td>
                 </tr>
                 <tr>
                     <td>Correo:</td>
@@ -76,7 +76,7 @@ if (isset($_POST['boton'])) {
                 </tr>
             </table>
         </form>
-        <a href="index.php"><button type="button" class="btn btn-danger">Volver</button></a>
+        <a href="show_users.php"><button type="button" class="btn btn-danger">Volver</button></a>
     </div>
 <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
