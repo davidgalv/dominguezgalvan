@@ -63,11 +63,10 @@ session_start();
                             <input type='submit' name='sessionoff' class='btn btn-danger' value='Cerrar Sesion'>
                         </div>
                 </form>";
-                echo"<div style='position: relative; float: right; padding-left: 10px'><a href='show_users.php'><button type='button' class='btn btn-danger'>Modificar Usuarios</button></a></div>";
 
             
             if ($_SESSION['sesion'] == 'admin') {
-                                
+                echo"<div style='position: relative; float: right; padding-left: 10px'><a href='show_users.php'><button type='button' class='btn btn-danger'>Modificar Usuarios</button></a></div>";
                 
                 echo "<div style='clear: both; padding-top: 20px'>";
                 echo "<table class='table' style='color: white'>";
