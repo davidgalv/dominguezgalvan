@@ -44,6 +44,13 @@
                 <tr>
                     <td style="padding-top: 10px"><input type="submit" name="boton" class="btn btn-danger" value="Registrar Usuario"></td>
                 </tr>
+                <tr>
+                    <td style="padding-top: 10px">
+                        <a href="index.php">
+                            <button type="button" class="btn btn-danger">Volver</button>
+                        </a>
+                    </td>
+                </tr>
             </table>
         </form>
         <?php
@@ -65,7 +72,7 @@
             echo '<p class="alert alert-success agileits" role="alert">Usuario registrado correctamente<p>';
         }
         ?>
-        <a href="index.php"><button type="button" class="btn btn-danger">Volver</button></a>
+        
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
