@@ -1,13 +1,9 @@
--- Volcando estructura de base de datos para dominguezgalvan
-CREATE DATABASE IF NOT EXISTS `dominguezgalvan` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
-USE `dominguezgalvan`;
-
 -- phpMyAdmin SQL Dump
 -- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-03-2020 a las 19:46:16
+-- Tiempo de generación: 05-03-2020 a las 22:59:12
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -25,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `dominguezgalvan`
 --
+CREATE DATABASE IF NOT EXISTS `dominguezgalvan` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `dominguezgalvan`;
 
 -- --------------------------------------------------------
 
@@ -49,8 +47,7 @@ INSERT INTO `imagenes` (`id`, `name`, `fecha`, `description`, `ubication`, `user
 (29, 'Foto1', '2020-03-05', 'Jaja mira un meme', './imagenes/carlos/Foto1.jpg', 8),
 (30, 'Foto2', '2020-03-05', 'Que picaro', './imagenes/carlos/Foto2.jpg', 8),
 (31, 'Foto3', '2020-03-05', 'Jaja tan cierto', './imagenes/Jakl2/Foto3.jpg', 9),
-(32, 'Foto4', '2020-03-05', 'Tan real xD', './imagenes/Jakl2/Foto4.jpg', 9),
-(33, 'Foto5', '2020-03-05', 'jaja si por favor', './imagenes/Linko/Foto5.jpg', 10);
+(32, 'Foto4', '2020-03-05', 'Tan real xD', './imagenes/Jakl2/Foto4.jpg', 9);
 
 -- --------------------------------------------------------
 
@@ -73,9 +70,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `user`, `name`, `passwd`, `mail`, `admin`) VALUES
 (1, 'admin', 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 'admin@admin.com', 1),
-(8, 'Herpic', 'carlos', '81dc9bdb52d04dc20036dbd8313ed055', 'carlos@iaw.com', 0),
-(9, 'David', 'Jakl2', '81dc9bdb52d04dc20036dbd8313ed055', 'david@iaw.com', 0),
-(10, 'Victor', 'Linko', '81dc9bdb52d04dc20036dbd8313ed055', 'linko@iaw.com', 0);
+(8, 'Carlos', 'Herpic', '81dc9bdb52d04dc20036dbd8313ed055', 'carlos@iaw.com', 0),
+(9, 'David', 'Jakl2', '81dc9bdb52d04dc20036dbd8313ed055', 'david@iaw.com', 0);
 
 --
 -- Índices para tablas volcadas
@@ -102,7 +98,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `imagenes`
 --
 ALTER TABLE `imagenes`
-  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
